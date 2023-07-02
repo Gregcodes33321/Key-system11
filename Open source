@@ -71,13 +71,18 @@ GetKey.TextSize = 14.000
 
 -- Scripts:
 
-local function XGII_fake_script() -- GetKey.LocalScript 
+local function YSFRP_fake_script() -- GetKey.LocalScript 
 	local script = Instance.new('LocalScript', GetKey)
 
 	setclipboard(GetLink(service_name))
+	KeyLib:MakeNotification({
+		Name = "Panda Script Hub",
+		Content = "Copied to your clipboard, Paste it on your browser to begin getting the key",
+		Image = "rbxassetid://5179834402",
+		Time = 5
 end
-coroutine.wrap(XGII_fake_script)()
-local function RUPUC_fake_script() -- Frame.DragScript 
+coroutine.wrap(YSFRP_fake_script)()
+local function WLFI_fake_script() -- Frame.DragScript 
 	local script = Instance.new('LocalScript', Frame)
 
 	--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
@@ -120,4 +125,4 @@ local function RUPUC_fake_script() -- Frame.DragScript
 	end)
 	
 end
-coroutine.wrap(RUPUC_fake_script)()
+coroutine.wrap(WLFI_fake_script)()
