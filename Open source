@@ -71,13 +71,13 @@ GetKey.TextSize = 14.000
 
 -- Scripts:
 
-local function GIGMWJ_fake_script() -- GetKey.Script 
-	local script = Instance.new('Script', GetKey)
+local function XGII_fake_script() -- GetKey.LocalScript 
+	local script = Instance.new('LocalScript', GetKey)
 
 	setclipboard(GetLink(service_name))
 end
-coroutine.wrap(GIGMWJ_fake_script)()
-local function LLQRHO_fake_script() -- Frame.DragScript 
+coroutine.wrap(XGII_fake_script)()
+local function RUPUC_fake_script() -- Frame.DragScript 
 	local script = Instance.new('LocalScript', Frame)
 
 	--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
@@ -120,4 +120,4 @@ local function LLQRHO_fake_script() -- Frame.DragScript
 	end)
 	
 end
-coroutine.wrap(LLQRHO_fake_script)()
+coroutine.wrap(RUPUC_fake_script)()
