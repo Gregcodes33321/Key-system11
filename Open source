@@ -69,10 +69,6 @@ GetKey.Text = "Get Key"
 GetKey.TextColor3 = Color3.fromRGB(255, 255, 255)
 GetKey.TextSize = 14.000
 
--- Scripts:
-
-local function YSFRP_fake_script() -- GetKey.LocalScript 
-	local script = Instance.new('LocalScript', GetKey)
 
 	setclipboard(GetLink(service_name))
 	KeyLib:MakeNotification({
