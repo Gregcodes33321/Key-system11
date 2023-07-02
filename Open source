@@ -1,4 +1,21 @@
- KeySystem = true, -- Set this to true to use our key system
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
+
+local Window = Rayfield:CreateWindow({
+   Name = "Flysch Hub",
+   LoadingTitle = "Flysch Hub",
+   LoadingSubtitle = "by .z0681",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = Hub, -- Create a custom folder for your hub/game
+      FileName = "Flysch Hub"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "https://discord.gg/kmqf7yYeFZ", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+
+KeySystem = true, -- Set this to true to use our key system
    KeySettings = {
       Title = "flysch_hub",
       Subtitle = "Key System",
