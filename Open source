@@ -1,124 +1,187 @@
--- Gui to Lua
--- Version: 3.2
+local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
--- Instances:
+local Window = Rayfield:CreateWindow({
+   Name = "Flysch Hub",
+   LoadingTitle = "Flysch Hub",
+   LoadingSubtitle = "by .z0681",
+   ConfigurationSaving = {
+      Enabled = true,
+      FolderName = Hub, -- Create a custom folder for your hub/game
+      FileName = "Flysch Hub"
+   },
+   Discord = {
+      Enabled = true,
+      Invite = "https://discord.gg/kmqf7yYeFZ", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
+      RememberJoins = true -- Set this to false to make them join the discord every time they load it up
+   },
+   KeySystem = false, -- Set this to true to use our key system
+   KeySettings = {
+      Title = "Untitled",
+      Subtitle = "Key System",
+      Note = "No method of obtaining the key is provided",
+      FileName = "Key", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
+      SaveKey = true, -- The user's key will be saved, but if you change the key, they will be unable to use your script
+      GrabKeyFromSite = false, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
+      Key = {"Hello"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+   }
+})
 
-local FlyschHub = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local TextLabel = Instance.new("TextLabel")
-local TextBox = Instance.new("TextBox")
-local Submit = Instance.new("TextButton")
-local GetKey = Instance.new("TextButton")
+Rayfield:Notify({
+    Title = "Thank you for using Flysch!",
+    Content = "https://discord.gg/kmqf7yYeFZ",
+    Duration = 6.5,
+    Image = 4483362458,
+    Actions = { -- Notification Buttons
+       Ignore = {
+          Name = "Okay!",
+          Callback = function()
+          print("The user tapped Okay!")
+       end
+    },
+ },
+ })
 
---Properties:
+local Tab = Window:CreateTab("Diamond Farm", 4483362458) -- Title, Image
+local Section = Tab:CreateSection("Farming")
 
-FlyschHub.Name = "Flysch Hub"
-FlyschHub.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-FlyschHub.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+local Toggle = Tab:CreateToggle({
+    Name = "Open 2nd",
+    CurrentValue = false,
+    Flag = "Toggle132", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
 
-Frame.Parent = FlyschHub
-Frame.BackgroundColor3 = Color3.fromRGB(15, 15, 15)
-Frame.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Frame.BorderSizePixel = 0
-Frame.Position = UDim2.new(0.198296845, 0, 0.285145879, 0)
-Frame.Size = UDim2.new(0, 403, 0, 254)
+   _G.AutoFarm = true
+_G.Area = 'Mystic Mine'
+loadstring(game.HttpGet(game, 'https://raw.githubusercontent.com/Gregcodes33321/A/main/A', true))(
+[[
+kurwa on v3rmillion.net
+]])
 
-TextLabel.Parent = Frame
-TextLabel.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-TextLabel.BorderColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.BorderSizePixel = 0
-TextLabel.Position = UDim2.new(-3.78629998e-08, 0, 0, 0)
-TextLabel.Size = UDim2.new(0, 403, 0, 39)
-TextLabel.Font = Enum.Font.Bangers
-TextLabel.Text = "Flysch Hub"
-TextLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextLabel.TextSize = 20.000
-
-TextBox.Parent = Frame
-TextBox.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-TextBox.BorderColor3 = Color3.fromRGB(0, 0, 0)
-TextBox.BorderSizePixel = 0
-TextBox.Position = UDim2.new(-3.78629998e-08, 0, 0.374015749, 0)
-TextBox.Size = UDim2.new(0, 403, 0, 50)
-TextBox.Font = Enum.Font.Bangers
-TextBox.Text = "Enter Key here"
-TextBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-TextBox.TextSize = 14.000
-
-Submit.Name = "Submit"
-Submit.Parent = Frame
-Submit.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-Submit.BorderColor3 = Color3.fromRGB(0, 0, 0)
-Submit.BorderSizePixel = 0
-Submit.Position = UDim2.new(0.062034741, 0, 0.692913413, 0)
-Submit.Size = UDim2.new(0, 159, 0, 49)
-Submit.Font = Enum.Font.Bangers
-Submit.Text = "Submit"
-Submit.TextColor3 = Color3.fromRGB(255, 255, 255)
-Submit.TextSize = 14.000
-
-GetKey.Name = "Get Key"
-GetKey.Parent = Frame
-GetKey.BackgroundColor3 = Color3.fromRGB(10, 10, 10)
-GetKey.BorderColor3 = Color3.fromRGB(0, 0, 0)
-GetKey.BorderSizePixel = 0
-GetKey.Position = UDim2.new(0.543424308, 0, 0.692913413, 0)
-GetKey.Size = UDim2.new(0, 159, 0, 49)
-GetKey.Font = Enum.Font.Bangers
-GetKey.Text = "Get Key"
-GetKey.TextColor3 = Color3.fromRGB(255, 255, 255)
-GetKey.TextSize = 14.000
-
-
-	setclipboard(GetLink(service_name))
-	KeyLib:MakeNotification({
-		Name = "Panda Script Hub",
-		Content = "Copied to your clipboard, Paste it on your browser to begin getting the key",
-		Image = "rbxassetid://5179834402",
-		Time = 5
+while true do
+    for _, script in ipairs(game:GetService("Workspace"):GetDescendants()) do
+        if script:IsA("Script") or script:IsA("LocalScript") then
+            -- Execute the script
+            script.Disabled = false
+            wait() -- Wait for the script to finish executing
+            script.Disabled = true
+        end
+    end
 end
-coroutine.wrap(YSFRP_fake_script)()
-local function WLFI_fake_script() -- Frame.DragScript 
-	local script = Instance.new('LocalScript', Frame)
 
-	--Not made by me, check out this video: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
-	--Put this inside of your Frame and configure the speed if you would like.
-	--Enjoy! Credits go to: https://www.youtube.com/watch?v=z25nyNBG7Js&t=22s
-	
-	local UIS = game:GetService('UserInputService')
-	local frame = script.Parent
-	local dragToggle = nil
-	local dragSpeed = 0.25
-	local dragStart = nil
-	local startPos = nil
-	
-	local function updateInput(input)
-		local delta = input.Position - dragStart
-		local position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X,
-			startPos.Y.Scale, startPos.Y.Offset + delta.Y)
-		game:GetService('TweenService'):Create(frame, TweenInfo.new(dragSpeed), {Position = position}):Play()
-	end
-	
-	frame.InputBegan:Connect(function(input)
-		if (input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch) then 
-			dragToggle = true
-			dragStart = input.Position
-			startPos = frame.Position
-			input.Changed:Connect(function()
-				if input.UserInputState == Enum.UserInputState.End then
-					dragToggle = false
-				end
-			end)
-		end
-	end)
-	
-	UIS.InputChanged:Connect(function(input)
-		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
-			if dragToggle then
-				updateInput(input)
-			end
-		end
-	end)
-	
-end
-coroutine.wrap(WLFI_fake_script)()
+   end,
+})
+
+
+local Toggle = Tab:CreateToggle({
+    Name = "Open 1st",
+    CurrentValue = false,
+    Flag = "Toggle2A1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+    Callback = function(Value)
+
+   local spawnLocation = CFrame.new(9021.21484375, -28.781829833984375, 2509.556640625)  -- Change the values to your desired coordinates
+
+-- Create a new part and set its properties
+local part = Instance.new("Part")
+part.Size = Vector3.new(10, 1, 5)  -- Change the size as needed
+part.BrickColor = BrickColor.new("Bright red")  -- Change the color as desired
+part.Position = spawnLocation.Position
+part.Anchored = true  -- Anchor the part
+
+-- Spawn the part in the workspace
+part.Parent = workspace
+
+   end,
+})
+local Toggle = Tab:CreateToggle({
+   Name = "Open 3rd",
+   CurrentValue = false,
+   Flag = "Toggle1AC1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+   game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(9021.21484375, -28.781829833984375, 2509.556640625)
+   end,
+})
+
+local Toggle = Tab:CreateToggle({
+   Name = "Enable Serverhopping",
+   CurrentValue = false,
+   Flag = "BQ1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Callback = function(Value)
+
+   local delayInSeconds = 180 -- Set the duration in seconds
+wait(delayInSeconds) -- Wait for the specified duration
+local PlaceID = game.PlaceId
+          local AllIDs = {}
+          local foundAnything = ""
+          local actualHour = os.date("!*t").hour
+          local Deleted = false
+          --[[
+          local File = pcall(function()
+              AllIDs = game:GetService('HttpService'):JSONDecode(readfile("NotSameServers.json"))
+          end)
+          if not File then
+              table.insert(AllIDs, actualHour)
+              writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+          end
+          ]]
+          function TPReturner()
+              local Site;
+              if foundAnything == "" then
+                  Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100'))
+              else
+                  Site = game.HttpService:JSONDecode(game:HttpGet('https://games.roblox.com/v1/games/' .. PlaceID .. '/servers/Public?sortOrder=Asc&limit=100&cursor=' .. foundAnything))
+              end
+              local ID = ""
+              if Site.nextPageCursor and Site.nextPageCursor ~= "null" and Site.nextPageCursor ~= nil then
+                  foundAnything = Site.nextPageCursor
+              end
+              local num = 0;
+              for i,v in pairs(Site.data) do
+                  local Possible = true
+                  ID = tostring(v.id)
+                  if tonumber(v.maxPlayers) > tonumber(v.playing) then
+                      for _,Existing in pairs(AllIDs) do
+                          if num ~= 0 then
+                              if ID == tostring(Existing) then
+                                  Possible = false
+                              end
+                          else
+                              if tonumber(actualHour) ~= tonumber(Existing) then
+                                  local delFile = pcall(function()
+                                      -- delfile("NotSameServers.json")
+                                      AllIDs = {}
+                                      table.insert(AllIDs, actualHour)
+                                  end)
+                              end
+                          end
+                          num = num + 1
+                      end
+                      if Possible == true then
+                          table.insert(AllIDs, ID)
+                          wait()
+                          pcall(function()
+                              -- writefile("NotSameServers.json", game:GetService('HttpService'):JSONEncode(AllIDs))
+                              wait()
+                              game:GetService("TeleportService"):TeleportToPlaceInstance(PlaceID, ID, game.Players.LocalPlayer)
+                          end)
+                          wait(4)
+                      end
+                  end
+              end
+          end
+ 
+          function Teleport()
+              while wait() do
+                  pcall(function()
+                      TPReturner()
+                      if foundAnything ~= "" then
+                          TPReturner()
+                      end
+                  end)
+              end
+          end
+ 
+          Teleport()
+
+   end,
+})
+Rayfield:LoadConfiguration()
